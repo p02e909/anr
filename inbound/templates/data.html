@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        }
+
+        .pagination a {
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data</h1>
+    <form action="" method="get" id="searchForm">
+        <label for="product_id">Product ID:</label>
+        <input type="text" name="product_id" id="product_id">
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category">
+        <button type="submit">Show</button>
+        <button type="button" onclick="resetForm()">Show All</button>
+    </form>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Japanese Name</th>
+                <th>English Name</th>
+                <th>Category</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in page_obj %}
+            <tr>
+                <td>{{ order.product_id }}</td>
+                <td>{{ order.jap_name }}</td>
+                <td>{{ order.eng_name }}</td>
+                <td>{{ order.category }}</td>
+                <td>{{ order.start_date }}</td>
+                <td>{{ order.end_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if error_message %}
+        <div class="error">
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&lt;&lt;</a>
+                            <a href="?page={{ page_obj.previous_page_number }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&lt;</a>
+                        {% endif %}
+                    
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+                    
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&gt;</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&gt;&gt;</a>
+                        {% endif %}
+                    </span>
+                </div>
+                
+            </td>
+        </tr>
+    </tfoot>
+
+    <script>
+        function resetForm() {
+            document.getElementById("product_id").value = "";
+            document.getElementById("category").value = "";
+            document.getElementById("searchForm").submit();
+        }
+    </script>
+</body>
+</html>
