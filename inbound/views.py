@@ -65,7 +65,7 @@ def upload_menu(request):
     return render(request, "upload.html", {"form": form})
 
 
-def load_filtered_data_from_csv(menu_code, menu_name):
+def load_filtered_menu_from_csv(menu_code, menu_name):
     err = ""
     menu = MenuModel.objects.all()
     try:
@@ -82,7 +82,7 @@ def list_menu_uploaded(request):
     menu_code = request.GET.get("menu_code", "")
     menu_name = request.GET.get("menu_name", "")
 
-    filtered_data, err = load_filtered_data_from_csv(menu_code, menu_name)
+    filtered_data, err = load_filtered_menu_from_csv(menu_code, menu_name)
 
     # Paginate the data
     paginator = Paginator(filtered_data, 10)  # 10 items per page
@@ -133,7 +133,7 @@ def upload_element(request):
     return render(request, "upload.html", {"form": form})
 
 
-def load_filtered_data_from_csv(element_code, element_name):
+def load_filtered_element_from_csv(element_code, element_name):
     err = ""
     element = ElementModel.objects.all()
 
@@ -142,7 +142,6 @@ def load_filtered_data_from_csv(element_code, element_name):
             element = element.filter(element_code=element_code)
         if element_name:
             element = element.filter(element_name=element_name)
-        print(element, 23123123)
     except Exception as e:
         err = str(e)
     return element, err
@@ -152,7 +151,7 @@ def list_element_uploaded(request):
     element_code = request.GET.get("element_code", "")
     element_name = request.GET.get("element_name", "")
 
-    filtered_data, err = load_filtered_data_from_csv(element_code, element_name)
+    filtered_data, err = load_filtered_element_from_csv(element_code, element_name)
     # Paginate the data
     paginator = Paginator(filtered_data, 10)  # 10 items per page
     page_number = request.GET.get("page")
