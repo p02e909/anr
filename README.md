@@ -16,6 +16,10 @@ Clone the repository to your local machine using Git:
 ```
 git clone https://github.com/p02e909/anr.git
 ```
+Change branch to new_req_22082024
+```
+git checkout new_req_22082024
+```
 ## Usage
 Please create Database postgresql with parameter in .env
 
