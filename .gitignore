@@ -1,1 +1,10 @@
 __pycache__/
+anr/pyvenv.cfg
+anr/.vscode/
+anr/.idea/
+anr/.pytest_cache/
+anr/.mypy_cache/
+anr/.coverage
+anr/lib/
+anr/bin/
+anr/lib64

@@ -1,6 +1,6 @@
 # ANR
 
-This program allows users to input a master.csv file and displays its contents on the screen. 
+This program allows users to input element_master.csv and menu_master.csv file, then generate 10 menu with 5 element each menu. 
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@ This program allows users to input a master.csv file and displays its contents o
 
 ### Clone the Repository
 
-First, clone the repository to your local machine using Git:
+Clone the repository to your local machine using Git:
 
 
 ```
@@ -19,10 +19,22 @@ git clone https://github.com/p02e909/anr.git
 ## Usage
 Please create Database postgresql with parameter in .env
 
+This source using python3.8.0
 ### Run the Development Server
+
+Export environment variables from .env file
+```
+export $(grep -v '^#' .env | xargs)
+```
+Create the database
+```
+psql -h $DB_HOST -U $DB_USER -c "CREATE DATABASE $DB_NAME;"
+```
 
 Start the development server:
 ```
+pip install -r requirements.txt
+python manage.py migrate
 python manage.py runserver
 ```
 The application will be available at http://localhost:8000

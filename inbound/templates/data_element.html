@@ -39,10 +39,10 @@
 <body>
     <h1>Data</h1>
     <form action="" method="get" id="searchForm">
-        <label for="product_id">Product ID:</label>
-        <input type="text" name="product_id" id="product_id">
-        <label for="category">Category:</label>
-        <input type="text" name="category" id="category">
+        <label for="element_code">Element code:</label>
+        <input type="text" name="element_code" id="element_code">
+        <label for="element_name">Element name:</label>
+        <input type="text" name="element_name" id="element_name">
         <button type="submit">Show</button>
         <button type="button" onclick="resetForm()">Show All</button>
     </form>
@@ -51,22 +51,16 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Japanese Name</th>
-                <th>English Name</th>
-                <th>Category</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Element code</th>
+                <th>Element name</th>
             </tr>
         </thead>
         <tbody>
             {% for order in page_obj %}
             <tr>
-                <td>{{ order.product_id }}</td>
-                <td>{{ order.jap_name }}</td>
-                <td>{{ order.eng_name }}</td>
-                <td>{{ order.category }}</td>
-                <td>{{ order.start_date }}</td>
-                <td>{{ order.end_date }}</td>
+                <td>{{ order.id }}</td>
+                <td>{{ order.element_code }}</td>
+                <td>{{ order.element_name }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -83,8 +77,8 @@
                 <div class="pagination">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
-                            <a href="?page=1{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&lt;&lt;</a>
-                            <a href="?page={{ page_obj.previous_page_number }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&lt;</a>
+                            <a href="?page=1{% if element_code %}&element_code={{ element_code }}{% endif %}{% if element_name %}&element_name={{ element_name }}{% endif %}">&lt;&lt;</a>
+                            <a href="?page={{ page_obj.previous_page_number }}{% if element_code %}&element_code={{ element_code }}{% endif %}{% if element_name %}&element_name={{ element_name }}{% endif %}">&lt;</a>
                         {% endif %}
                     
                         <span class="current">
@@ -92,8 +86,8 @@
                         </span>
                     
                         {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&gt;</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}{% if product_id %}&product_id={{ product_id }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&gt;&gt;</a>
+                            <a href="?page={{ page_obj.next_page_number }}{% if element_code %}&element_code={{ element_code }}{% endif %}{% if element_name %}&element_name={{ element_name }}{% endif %}">&gt;</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}{% if element_code %}&element_code={{ element_code }}{% endif %}{% if element_name %}&element_name={{ element_name }}{% endif %}">&gt;&gt;</a>
                         {% endif %}
                     </span>
                 </div>
@@ -104,8 +98,8 @@
 
     <script>
         function resetForm() {
-            document.getElementById("product_id").value = "";
-            document.getElementById("category").value = "";
+            document.getElementById("element_code").value = "";
+            document.getElementById("element_name").value = "";
             document.getElementById("searchForm").submit();
         }
     </script>

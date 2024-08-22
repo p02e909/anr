@@ -1,15 +1,18 @@
 from django.db.models import (
-    Model,
+    AutoField,
     CharField,
-    DateField,
-    PositiveIntegerField,
+    Model,
+    TextField,
 )
 
 
-class OrderModel(Model):
-    product_id = CharField(max_length=10, unique=True, verbose_name="Product ID")
-    jap_name = CharField(max_length=200, verbose_name="Japanese name")
-    eng_name = CharField(max_length=200, verbose_name="English name")
-    category = PositiveIntegerField()
-    start_date = DateField(blank=True, null=True, verbose_name="Start date")
-    end_date = DateField(blank=True, null=True, verbose_name="End date")
+class MenuModel(Model):
+    id = AutoField(primary_key=True)
+    menu_code = CharField(max_length=10)
+    menu_name = TextField(max_length=50) 
+
+
+class ElementModel(Model):
+    id = AutoField(primary_key=True)
+    element_code = CharField(max_length=10)
+    element_name = TextField()
