@@ -7,24 +7,23 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ElementModel',
+            name="ElementModel",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('element_code', models.CharField(max_length=10)),
-                ('element_name', models.TextField()),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("element_code", models.CharField(max_length=10)),
+                ("element_name", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='MenuModel',
+            name="MenuModel",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('menu_code', models.CharField(max_length=10)),
-                ('menu_name', models.TextField(max_length=50)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("menu_code", models.CharField(max_length=10)),
+                ("menu_name", models.TextField(max_length=50)),
             ],
         ),
     ]

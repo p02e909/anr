@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menus with Elements</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menus with Elements</h1>
+    {% for menu in menus %}
+        <h2>Menu Code: {{ menu.menu_code }}</h2>
+        <h3>Menu Name: {{ menu.menu_name }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Element Code</th>
+                    <th>Element Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in menu.elements %}
+                    <tr>
+                        <td>{{ element.0 }}</td>
+                        <td>{{ element.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</body>
+</html>

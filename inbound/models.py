@@ -1,15 +1,10 @@
-from django.db.models import (
-    AutoField,
-    CharField,
-    Model,
-    TextField,
-)
+from django.db.models import AutoField, CharField, Model, TextField
 
 
 class MenuModel(Model):
     id = AutoField(primary_key=True)
     menu_code = CharField(max_length=10)
-    menu_name = TextField(max_length=50) 
+    menu_name = TextField(max_length=50)
 
 
 class ElementModel(Model):
